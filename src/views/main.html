@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Open Finance - Menu Principal</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg-main: #050505;
+        --bg-card: #101a10;
+        --border-hacker: #00ff41;
+        --text-hacker: #00ff41;
+        --text-main: #c8ffc8;
+        --radius: 14px;
+        --shadow: 0 0 16px #00ff4166, 0 0 2px #00ff41;
+        --scanline: repeating-linear-gradient(
+          to bottom,
+          transparent 0px,
+          transparent 2px,
+          rgba(0, 255, 65, 0.04) 3px,
+          transparent 4px,
+          transparent 7px
+        );
+      }
+
+      body {
+        min-height: 100vh;
+        margin: 0;
+        background: var(--bg-main);
+        color: var(--text-main);
+        font-family: 'Fira Mono', 'Consolas', 'Menlo', monospace;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      /* Scanline overlay */
+      body::before {
+        content: '';
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        z-index: 10;
+        background: var(--scanline);
+        opacity: 0.7;
+        mix-blend-mode: lighten;
+        animation: scanmove 4s linear infinite;
+      }
+      @keyframes scanmove {
+        0% {
+          background-position-y: 0;
+        }
+        100% {
+          background-position-y: 20px;
+        }
+      }
+
+      /* Terminal green glow effect */
+      .container {
+        background: linear-gradient(135deg, #0a120a 80%, #0d2f0d 100%);
+        border: 2.5px solid var(--border-hacker);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        padding: 42px 38px 34px 38px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        min-width: 320px;
+        max-width: 410px;
+        width: 100%;
+        position: relative;
+        z-index: 1;
+        overflow: hidden;
+        animation: border-glow 2.5s infinite alternate;
+      }
+      @keyframes border-glow {
+        from {
+          box-shadow:
+            0 0 10px #00ff41,
+            0 0 2px #00ff41;
+        }
+        to {
+          box-shadow:
+            0 0 32px #00ff41,
+            0 0 8px #00ff41;
+        }
+      }
+
+      /* Fake terminal bar */
+      .terminal-bar {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        margin-bottom: 18px;
+      }
+      .dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: #00ff41;
+        box-shadow: 0 0 6px #00ff41cc;
+        opacity: 0.8;
+        animation: blink 1.2s infinite alternate;
+      }
+      .dot:nth-child(2) {
+        background: #222;
+        box-shadow: none;
+        animation: none;
+      }
+      .dot:nth-child(3) {
+        background: #222;
+        box-shadow: none;
+        animation: none;
+      }
+      .terminal-title {
+        color: var(--text-hacker);
+        font-size: 1.05rem;
+        font-weight: bold;
+        margin-left: 10px;
+        letter-spacing: 0.03em;
+        text-shadow: 0 0 7px #00ff41cc;
+        flex: 1;
+      }
+      @keyframes blink {
+        0% {
+          opacity: 0.7;
+        }
+        100% {
+          opacity: 1;
+        }
+      }
+
+      h1 {
+        margin: 0 0 24px 0;
+        font-size: 1.5rem;
+        text-align: center;
+        color: var(--text-hacker);
+        letter-spacing: 0.08em;
+        text-shadow: 0 0 12px #00ff41cc;
+        border-bottom: 1.5px solid var(--border-hacker);
+        padding-bottom: 10px;
+        width: 100%;
+        background: rgba(0, 255, 65, 0.03);
+        border-radius: 0 0 6px 6px;
+      }
+
+      ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 18px;
+      }
+
+      li {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      a {
+        display: block;
+        width: 100%;
+        padding: 18px 0;
+        background: rgba(0, 0, 0, 0.75);
+        color: var(--text-hacker);
+        font-family: inherit;
+        font-size: 1.06rem;
+        text-align: center;
+        border-radius: var(--radius);
+        border: 2px solid var(--border-hacker);
+        letter-spacing: 0.04em;
+        font-weight: 700;
+        text-decoration: none;
+        box-shadow: 0 0 6px #00ff4133 inset;
+        transition:
+          background 0.15s,
+          color 0.12s,
+          box-shadow 0.17s,
+          border-color 0.16s;
+        position: relative;
+        overflow: hidden;
+      }
+      a::after {
+        content: '';
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        border-radius: var(--radius);
+        box-shadow: 0 0 18px 2px #00ff4166;
+        opacity: 0;
+        transition: opacity 0.16s;
+        pointer-events: none;
+      }
+      a:hover,
+      a:focus {
+        background: #0a2f0a;
+        color: #181;
+        border-color: #00ff41;
+        box-shadow:
+          0 0 18px #00ff41cc,
+          0 0 8px #00ff41 inset;
+        outline: none;
+      }
+      a:hover::after,
+      a:focus::after {
+        opacity: 1;
+      }
+
+      /* Responsividade */
+      @media (max-width: 600px) {
+        .container {
+          padding: 18px 3vw 14px 3vw;
+          min-width: 0;
+          max-width: 97vw;
+        }
+        ul {
+          grid-template-columns: 1fr;
+          gap: 14px;
+        }
+        h1 {
+          font-size: 1.1rem;
+          padding-bottom: 7px;
+        }
+        a {
+          font-size: 0.97rem;
+          padding: 12px 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="terminal-bar">
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="terminal-title">openfinance@jojowam:~$</span>
+      </div>
+      <h1>MENU PRINCIPAL</h1>
+      <ul>
+        <li><a href="/create-configuration">Criar Configuração</a></li>
+        <li><a href="/get-configuration">Obter Configuração</a></li>
+        <li><a href="/create-payment">Criar Pagamento</a></li>
+        <li><a href="/get-payments">Obter Pagamentos</a></li>
+      </ul>
+    </div>
+  </body>
+</html>

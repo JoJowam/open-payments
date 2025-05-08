@@ -1,0 +1,8 @@
+.vscode
+.env
+.prettierrc
+.git
+
+/vscode
+/node_modules
+/src/config/certs

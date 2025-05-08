@@ -1,0 +1,38 @@
+{
+  "name": "open-payments",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node src/app.js",
+    "dev": "nodemon --exec \"cls && node\" src/app.js",
+    "prettier-format": "prettier --write 'src/**/*.{js,jsx,ts,tsx,css,json}' --config ./.prettierrc"
+  },
+  "imports": {
+    "#shared/constants": "./src/shared/constants/index.js",
+    "#shared/utils": "./src/shared/utils/index.js"
+  },
+  "keywords": [
+    "open-finance",
+    "payment-initiation"
+  ],
+  "author": "Josué Vila Real de Almeida",
+  "license": "MIT",
+  "dependencies": {
+    "awilix": "^12.0.5",
+    "axios": "^1.9.0",
+    "compression": "^1.8.0",
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "express-rate-limit": "^7.5.0",
+    "helmet": "^8.1.0",
+    "uuid": "^11.1.0",
+    "validator": "^13.15.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10",
+    "prettier": "^3.5.3"
+  }
+}
